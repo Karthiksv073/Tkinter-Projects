@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 from random import randint
 def start():
-    if max(len(tv1.get()),len(tv2.get())) in range(1,10):
+    if min(len(tv1.get()),len(tv2.get())) in range(1,10):
         global f1,f2,p1,p2
         f1.destroy()
         f2.destroy()
