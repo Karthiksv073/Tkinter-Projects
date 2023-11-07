@@ -51,7 +51,6 @@ def update_board(i):
     score=0
     for j in combinations:
         if values[j[0]]==values[j[1]]==values[j[2]]=="X" or values[j[0]]==values[j[1]]==values[j[2]]=="O":
-            combinations.remove(j)
             score+=1
     if tv4.get()==0:
         p2.config(bg="#FFFF99")
