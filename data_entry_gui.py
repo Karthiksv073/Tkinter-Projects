@@ -24,10 +24,13 @@ def F1():
         sheet=workbook.active
         sheet.append([Sv1.get(),Sv2.get(),e3.get(),e4.get(),e5.get(),e7.get(),e8.get(),Sv3.get()])
         workbook.save(filepath)
-
+        Sv1.set("")
+        Sv2.set("")
+        e5.set("")
+        e3.set("")
 root=tk.Tk()
-fc="aqua"
-bc="black"
+fc="black"
+bc=""
 root.configure(bg=bc)
 Sv1=tk.StringVar()
 Sv2=tk.StringVar()

@@ -21,7 +21,7 @@ def start():
     else:
         messagebox.showwarning(title="Error!",message="Too long!.")
 def clean_board():
-    global B1,B2,B3,B4,B5,B6,B7,B8,B9,buttons,values,combinations
+    global B1,B2,B3,B4,B5,B6,B7,B8,B9,buttons,values,combinations,t1
     B1=tk.Button(f1,text=" ",bg=cc1,width=2,fg=cc2,font=f"{font_style} 80 italic bold",activebackground=cc1,activeforeground=cc2,relief=tk.SUNKEN,command=lambda: update_board(0))
     B1.grid(row=1,column=0)
     B2=tk.Button(f1,text=" ",bg=cc1,width=2,fg=cc2,font=f"{font_style} 80 italic bold",activebackground=cc1,activeforeground=cc2,relief=tk.SUNKEN,command=lambda: update_board(1))
@@ -40,11 +40,15 @@ def clean_board():
     B8.grid(row=3,column=1)
     B9=tk.Button(f1,text=" ",bg=cc1,width=2,fg=cc2,font=f"{font_style} 80 italic bold",activebackground=cc1,activeforeground=cc2,relief=tk.SUNKEN,command=lambda: update_board(8))
     B9.grid(row=3,column=2)
-    tk.Checkbutton(root,text="Want to change the variable ?",variable=tv3,bg=cc1,fg=cc2,activebackground=cc1,activeforeground=cc2,onvalue="X",offvalue="O").place(x=350,y=70)
+    t1=tk.Checkbutton(root,text=f"{tv3.get()} is set.\nWant to change the variable ?",variable=tv3,bg=cc1,fg=cc2,activebackground=cc1,activeforeground=cc2,onvalue="X",offvalue="O")
+    t1.place(x=350,y=70)
     buttons=[B1,B2,B3,B4,B5,B6,B7,B8,B9]
     values=["1","2","3","4","5","6","7","8","9"]
     combinations=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
+
 def update_board(i):
+    t1.config(text=f"{tv3.get()} is set.\nWant to change the variable ?")
+    tv3.set("O") if tv3.get()=="X" else tv3.set("X")
     buttons[i].configure(text=tv3.get())
     values.pop(i)
     values.insert(i,tv3.get())
