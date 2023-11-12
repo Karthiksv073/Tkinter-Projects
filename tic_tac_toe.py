@@ -50,8 +50,7 @@ def update_board(i):
     t1.config(text=f"{tv3.get()} is set.\nWant to change the variable ?")
     tv3.set("O") if tv3.get()=="X" else tv3.set("X")
     buttons[i].configure(text=tv3.get())
-    values.pop(i)
-    values.insert(i,tv3.get())
+    values[i]=tv3.get()
     score=0
     for j in combinations:
         if values[j[0]]==values[j[1]]==values[j[2]]=="X" or values[j[0]]==values[j[1]]==values[j[2]]=="O":
