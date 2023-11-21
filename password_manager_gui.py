@@ -144,8 +144,8 @@ def F9():
     tk.Label(root3,text="E-mail : karthiksv073@gmail.com",bg=bc,fg=fc,font=f"{style} 20 italic bold").pack(anchor=tk.NW)
     root3.mainloop()
 root=tk.Tk()
-a1=(("#333333","#FF9800","Raleway",23),("#151060","gold","georgia",17),("#A0AECD","#000000","Times",24))
-x1=randint(0,2)
+a1=(("#000000","gold","georgia",17),("#A0AECD","#000000","Times",24))
+x1=randint(0,1)
 bc=a1[x1][0]
 fc=a1[x1][1]
 style=a1[x1][2]
