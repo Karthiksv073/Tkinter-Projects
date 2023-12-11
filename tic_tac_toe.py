@@ -40,7 +40,7 @@ def clean_board():
     B8.grid(row=3,column=1)
     B9=tk.Button(f1,text=" ",bg=cc1,width=2,fg=cc2,font=f"{font_style} 80 italic bold",activebackground=cc1,activeforeground=cc2,relief=tk.SUNKEN,command=lambda: update_board(8))
     B9.grid(row=3,column=2)
-    t1=tk.Checkbutton(root,text="Want to change the variable ?\n",variable=tv3,bg=cc1,fg=cc2,activebackground=cc1,activeforeground=cc2,onvalue="X",offvalue="O")
+    t1=tk.Checkbutton(root,text="X is set.\nWant to change the variable ?",variable=tv3,bg=cc1,fg=cc2,activebackground=cc1,activeforeground=cc2,onvalue="X",offvalue="O")
     t1.place(x=350,y=70)
     buttons=[B1,B2,B3,B4,B5,B6,B7,B8,B9]
     values=["1","2","3","4","5","6","7","8","9"]
@@ -78,10 +78,8 @@ def update_board(i):
         messagebox.showinfo(title="TIC-TAC-TOE",message="TOUGH Game! \n\nTry Again")
         clean_board()
 root=tk.Tk()
-cc1,cc2,font_style=[["#000000","#FFD700","algerian"],
-                    ["#000000","aquamarine","algerian"],
-                    ["#333333","#39FF14","algerian"],
-                    ["#000080","gold","algerian"]][randint(0,3)]
+cc1,cc2,font_style=[["#000000","aquamarine","algerian"],
+                    ["#333333","#39FF14","algerian"]][randint(0,1)]
 root.geometry("1550x850")
 root.title("TIC - TAC - TOE")
 root.configure(bg=cc1)
