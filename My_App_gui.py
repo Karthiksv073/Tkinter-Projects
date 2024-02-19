@@ -109,7 +109,6 @@ def initiate_lock():
     with open(Sv1.get(),'w') as file:
         file.writelines(a)
         file.write(f"{day}:\t{s}\n")
-        print(a)
         file.close()
     homepage()
 root=tk.Tk()
