@@ -3,8 +3,9 @@ from tkinter import messagebox
 from datetime import date
 def homepage():
     global f2
-    try:
-        f4.destroy()
+    try: f4.destroy()
+    except: pass
+    try: f6.destroy()
     except: pass
     f2=tk.Frame(f1,bg=bc)
     f2.grid(row=0,column=0,padx=10,pady=10)
@@ -12,12 +13,6 @@ def homepage():
     l21.grid(row=0,column=0,padx=20,pady=10)
     b21=tk.Button(f2,text="Income",bg=bc,fg=fc,font="algerian 15 italic bold",activebackground=fc,width=6,command=income_tracker)
     b21.grid(row=1,column=0,padx=20,pady=10)
-    b22=tk.Button(f2,text="",bg=bc,fg=fc,font="algerian 15 italic bold",activebackground=fc,width=6,command="")
-    b22.grid(row=1,column=1,padx=20,pady=10)
-    b23=tk.Button(f2,text="",bg=bc,fg=fc,font="algerian 15 italic bold",activebackground=fc,width=6,command="")
-    b23.grid(row=2,column=0,padx=20,pady=10)
-    b24=tk.Button(f2,text="",bg=bc,fg=fc,font="algerian 15 italic bold",activebackground=fc,width=6,command="")
-    b24.grid(row=2,column=1,padx=20,pady=10)
 def income_tracker():
     global f3,b3
     try: f2.destroy()
@@ -52,15 +47,24 @@ def income_tracker():
         b42=tk.Button(f41,text="No",bg=bc,fg=fc,font="algerian 15 italic bold",activebackground=fc,command=homepage)
         b42.grid(row=1,column=1,padx=20,pady=10)
 def update_earnings():
-    with open(f"{Sv1.get()}",'a') as file1:
+    global f6
+    with open(Sv1.get(),'a') as file1:
         file1.write(f"{day}:\t{Iv1.get()}\n")
         file1.close()
-    Iv1.set("Enter")
-    try:
-        f3.destroy()
+    Iv1.set(0)
+    try: f3.destroy()
     except: pass
     messagebox.showinfo(title="",message="File updated")
-    homepage()   
+    if get_total_earnings()>=100:
+        f6=tk.Frame(f1,bg=bc)
+        f6.grid(row=0,column=0,padx=10,pady=10)
+        l61=tk.Label(f6,text="Earnings Exceeded 50 INR\nWant to Lock ?",bg=bc,fg=fc,font="algerian 15 italic bold")
+        l61.grid(row=0,column=0,padx=10,pady=10)
+        b61=tk.Button(f6,text="Initiate Lock",bg=bc,fg=fc,font="algerian 15 italic bold",activebackground=fc,command=initiate_lock)
+        b61.grid(row=1,column=0,padx=20,pady=10)
+        b62=tk.Button(f6,text="Not now",bg=bc,fg=fc,font="algerian 15 italic bold",activebackground=fc,command=homepage)
+        b62.grid(row=1,column=1,padx=20,pady=10)
+    else: homepage()   
 def get_total_earnings():
     with open(Sv1.get(),'r') as file1:
         total=0
@@ -73,8 +77,7 @@ def get_total_earnings():
         return total
 def rename_income_file():
     global f5
-    try:
-        f4.destroy()
+    try: f4.destroy()
     except: pass
     f5=tk.Frame(f1,bg=bc)
     f5.grid(row=0,column=0,padx=10,pady=10)
@@ -87,7 +90,6 @@ def rename_income_file():
 def create_income_file():
     with open(Sv1.get(),'w') as file1:
         file1.write("Day    Profit\n")
-        file1.write(f"{day}:\t{0}\n")
         file1.close()
     try:
         f5.destroy()
@@ -95,6 +97,21 @@ def create_income_file():
     except: pass
     messagebox.showinfo(title="",message="File Created")
     income_tracker()
+def initiate_lock():
+    with open(Sv1.get(),'r') as file:
+        a=list(file.readlines())
+    s=0
+    for i in a:
+        j=i.rpartition("\t")
+        if j[0][:10]==str(day):
+            s+=int(j[2][:-1])
+            a.remove(i)
+    with open(Sv1.get(),'w') as file:
+        file.writelines(a)
+        file.write(f"{day}:\t{s}\n")
+        print(a)
+        file.close()
+    homepage()
 root=tk.Tk()
 bc="black"
 fc="grey"

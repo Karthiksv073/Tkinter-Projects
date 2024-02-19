@@ -45,7 +45,6 @@ def clean_board():
     buttons=[B1,B2,B3,B4,B5,B6,B7,B8,B9]
     values=["1","2","3","4","5","6","7","8","9"]
     combinations=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
-
 def update_board(i):
     t1.config(text=f"{tv3.get()} is set.\nWant to change the variable ?")
     tv3.set("O") if tv3.get()=="X" else tv3.set("X")
