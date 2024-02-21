@@ -1,9 +1,10 @@
 import tkinter as tk
+from random import randint
 def F1():
     try: Sv1.set(eval(Sv1.get().replace("x","*")))
     except: Sv1.set("ERROR :-(")
 root=tk.Tk()
-cc1,cc2,font_style="#28231D","aqua","arial"
+cc1,cc2,font_style=(("#28231D","aqua","arial"),("#343434","#FFD700","arial"))[randint(0,1)]
 Sv1=tk.StringVar()
 root.geometry("380x310")
 root.resizable(False,False)
