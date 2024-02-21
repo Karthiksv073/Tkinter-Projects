@@ -77,8 +77,9 @@ def update_board(i):
         messagebox.showinfo(title="TIC-TAC-TOE",message="TOUGH Game! \n\nTry Again")
         clean_board()
 root=tk.Tk()
-cc1,cc2,font_style=[["#000000","aquamarine","algerian"],
-                    ["#333333","#39FF14","algerian"]][randint(0,1)]
+cc1,cc2,font_style=(("#000000","aquamarine","algerian"),
+                    ("#333333","#39FF14","algerian"),
+                    ("#343434","#FFD700","algerian"))[randint(0,2)]
 root.geometry("1550x850")
 root.title("TIC - TAC - TOE")
 root.configure(bg=cc1)
