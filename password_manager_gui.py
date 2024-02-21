@@ -15,7 +15,7 @@ def F1():
         for j in range(3):
             ck=f"c{i}"
             ck=tk.StringVar()
-            tk.Entry(f2,textvariable=ck,bg=bc,fg=fc,width=Iv2.get(),font=f"{style} 22 italic bold",relief=tk.SUNKEN).grid(row=i,column=j,padx=7,pady=7)
+            tk.Entry(f2,textvariable=ck,bg=bc,fg=fc,width=Iv2.get(),font=f"{style} 22 italic bold",relief=tk.SUNKEN).grid(row=i,column=j,padx=15,pady=7)
             tk.Label(f2,text="\n\n\n",bg=bc).grid(row=i+1,column=j+1)
             ck.set("  "+F2())
     setattr(F1,"B1",True)
@@ -144,7 +144,7 @@ def F9():
     tk.Label(root3,text="E-mail : karthiksv073@gmail.com",bg=bc,fg=fc,font=f"{style} 20 italic bold").pack(anchor=tk.NW)
     root3.mainloop()
 root=tk.Tk()
-a1=(("#000000","aquamarine","georgia",17),("#A0AECD","#000000","Times",24))
+a1=(("#343434","#FFD700","Times",24),("#A0AECD","#000000","Times",24))
 x1=randint(0,1)
 bc=a1[x1][0]
 fc=a1[x1][1]
