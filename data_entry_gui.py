@@ -29,7 +29,7 @@ def F1():
         e5.set("")
         e3.set("")
 root=tk.Tk()
-fc="black"
+fc="black"  
 bc="#A0AECD"
 root.configure(bg=bc)
 root.title("Data Entry Form")
@@ -52,9 +52,9 @@ l4.grid(row=2,column=0)
 l5=tk.Label(f11,text="Nationality:",bg=bc,fg=fc)
 l5.grid(row=2,column=1)
 
-e1=tk.Entry(f11,textvariable=Sv1,bg=bc,fg=fc)
+e1=tk.Entry(f11,textvariable=Sv1)
 e1.grid(row=1,column=0)
-e2=tk.Entry(f11,textvariable=Sv2,bg=bc,fg=fc)
+e2=tk.Entry(f11,textvariable=Sv2)
 e2.grid(row=1,column=1)
 e3=ttk.Combobox(f11,values=["","Mr.","Ms.","Dr."])
 e3.grid(row=1,column=2)
@@ -75,7 +75,7 @@ l7.grid(row=0,column=1)
 l8=tk.Label(f12,text="Semesters",bg=bc,fg=fc)
 l8.grid(row=0,column=2)
 
-e6=tk.Checkbutton(f12,text="Currently Registered",onvalue="Registered",offvalue="Not Registered",variable=Sv3,bg=bc,fg=fc)
+e6=tk.Checkbutton(f12,text="Currently Registered",onvalue="Registered",offvalue="Not Registered",variable=Sv3,bg=bc,fg=fc,activebackground=bc)
 e6.grid(row=1,column=0)
 e7=ttk.Spinbox(f12,from_=0,to=100)
 e7.grid(row=1,column=1)
@@ -89,8 +89,8 @@ for i in f12.winfo_children():
 
 f13=tk.LabelFrame(f1,text="Terms & Conditions",bg=bc,fg=fc)
 f13.grid(row=2,column=0,sticky="news",padx=20,pady=10)
-e9=tk.Checkbutton(f13,text="I accept the terms and conditions.",onvalue="Accepted",offvalue="Not Accepted",variable=Sv4,bg=bc,fg=fc)
+e9=tk.Checkbutton(f13,text="I accept the terms and conditions.",onvalue="Accepted",offvalue="Not Accepted",variable=Sv4,bg=bc,fg=fc,activebackground=bc)
 e9.grid(row=0,column=0)
-e10=tk.Button(f1,text="Submit",bg=bc,fg=fc,command=F1)
+e10=tk.Button(f1,text="Submit",bg=bc,fg=fc,activebackground=bc,command=F1)
 e10.grid(row=3,column=0,sticky="news",padx=20,pady=10)
 root.mainloop()
