@@ -1,14 +1,14 @@
 import tkinter as tk
 from random import randint,choice,shuffle
-def F1():
+def password_generator_ui():
     global f2
-    if hasattr(F1,"B2") or hasattr(F1,"B3"):
+    if hasattr(password_generator_ui,"B2") or hasattr(password_generator_ui,"B3"):
         f2.destroy()
         f2=tk.Frame(root,bg=bc)
         f2.pack(anchor=tk.NW,side=tk.LEFT,fill=tk.BOTH)
         try:
-            delattr(F1,"B2")
-            delattr(F1,"B3")
+            delattr(password_generator_ui,"B2")
+            delattr(password_generator_ui,"B3")
         except: pass   
     tk.Label(f2,text="Select a password :",bg=bc,fg=fc,font=f"{style} 20 italic bold underline").grid(row=0,column=0,padx=7,pady=10)
     for i in range(2,13):
@@ -17,9 +17,9 @@ def F1():
             ck=tk.StringVar()
             tk.Entry(f2,textvariable=ck,bg=bc,fg=fc,width=Iv2.get(),font=f"{style} 22 italic bold",relief=tk.SUNKEN).grid(row=i,column=j,padx=15,pady=7)
             tk.Label(f2,text="\n\n\n",bg=bc).grid(row=i+1,column=j+1)
-            ck.set("  "+F2())
-    setattr(F1,"B1",True)
-def F2():
+            ck.set("  "+password_generator())
+    setattr(password_generator_ui,"B1",True)
+def password_generator():
     a=[list("abcdefghijklmnopqrstuvwxyz"),list("ABCDEFGHIJKLMNOPQRSTUVWXYZ"),list("0123456789"),list("!@#$%&*")]
     e=[]
     for i in range(randint(1,2)): e.append(choice(a[1]))
@@ -28,24 +28,24 @@ def F2():
     for i in range(randint(2,5)): e.append(choice(a[3]))
     for i in range(randint(1,10)): shuffle(e)
     return "".join(e)
-def F3():
+def password_validator_ui():
     global f2
-    if hasattr(F1,"B1") or hasattr(F1,"B3"):
+    if hasattr(password_generator_ui,"B1") or hasattr(password_generator_ui,"B3"):
         f2.destroy()
         f2=tk.Frame(root,bg=bc)
         f2.pack(anchor=tk.NW,side=tk.LEFT,fill=tk.BOTH)
         try:
-            delattr(F1,"B1")
-            delattr(F1,"B3")
+            delattr(password_generator_ui,"B1")
+            delattr(password_generator_ui,"B3")
         except: pass
     tk.Label(f2,text="Password Validator",bg=bc,fg=fc,font=f"{style} 20 italic bold underline").grid(row=0,column=1,padx=20,pady=20)
     tk.Label(f2,text="Password : ",bg=bc,fg=fc,font=f"{style} 20 italic bold").grid(row=2,column=1,padx=10)
     tk.Entry(f2,textvariable=Sv1,bg=bc,fg=fc,font=f"{style} 20 italic bold",show="*").grid(row=2,column=2)
-    tk.Checkbutton(f2,variable=Iv1,text="Terms and conditions*",bg=bc,fg=fc,font=f"{style} 20 italic bold",activebackground=bc,command=F6).grid(row=3,column=2,padx=10,pady=10)
-    tk.Button(f2,text="Validate",bg=bc,fg=fc,font=f"{style} 20 italic bold",activebackground=bc,command=F5).grid(row=6,column=2,pady=5)
+    tk.Checkbutton(f2,variable=Iv1,text="Terms and conditions*",bg=bc,fg=fc,font=f"{style} 20 italic bold",activebackground=bc,command=password_gen_val_rules).grid(row=3,column=2,padx=10,pady=10)
+    tk.Button(f2,text="Validate",bg=bc,fg=fc,font=f"{style} 20 italic bold",activebackground=bc,command=password_validator_ui_child).grid(row=6,column=2,pady=5)
     tk.Label(f2,text="Reading...",bg=bc,fg=fc,font=f"{style} 20 italic bold").grid(row=5,column=2)
-    setattr(F1,"B2",True)
-def F4(a):
+    setattr(password_generator_ui,"B2",True)
+def password_validator(a):
     c=[0,0,0,0]
     b=[['!','@','#','$','%','&','*'],list("abcdefghijklmnopqrstuvwxyz"),list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")]
     if((len(a)>=7)):
@@ -56,7 +56,7 @@ def F4(a):
             if(i in b[2]): c[3]+=1
     if(c[0]>=2 and c[1]>=2 and c[2]>1 and c[3]>0): return "Strong Password"
     else: return "Weak Password"
-def F5():
+def password_validator_ui_child():
     global root1
     try:
         root2.destroy()
@@ -66,7 +66,7 @@ def F5():
     root1.config(bg=bc)
     l2=tk.Label(root1,bg=bc,fg=fc,font=f"{style} 20 italic bold")
     l2.pack()
-    if(F4(Sv1.get())=="Strong Password"):
+    if(password_validator(Sv1.get())=="Strong Password"):
         root1.minsize(600,200)
         root1.maxsize(600,200)
         l2.config(text="\nCongratulations!\n\nYour password is Strong and secure.\n\nTogether, we create magic and\n\tredefine possibilities!\n")
@@ -76,7 +76,7 @@ def F5():
         l2.config(text="Weak Password\n\nTry Again")
     Sv1.set("")
     root1.mainloop()
-def F6():
+def password_gen_val_rules():
     try:
         root1.destroy()
         root3.destroy()
@@ -95,15 +95,15 @@ def F6():
     tk.Label(root2,text="4. It should consist of atleast one uppercase alphabet.",bg=bc,fg=fc,font=f"{style} 20 italic bold").pack(anchor=tk.NW)
     tk.Label(root2,text="4. It should consist of atleast one lowercase alphabet.",bg=bc,fg=fc,font=f"{style} 20 italic bold").pack(anchor=tk.NW)
     tk.Label(root2,text="5. Special characters allowed are !,@,#,$,%,&,*.",bg=bc,fg=fc,font=f"{style} 20 italic bold").pack(anchor=tk.NW)
-def F7():
+def password_storage_module_ui():
     global f2
-    if hasattr(F1,"B1") or hasattr(F1,"B2"):
+    if hasattr(password_generator_ui,"B1") or hasattr(password_generator_ui,"B2"):
         f2.destroy()
         f2=tk.Frame(root,bg=bc)
         f2.pack(anchor=tk.NW,side=tk.LEFT,fill=tk.BOTH)
         try:
-            delattr(F1,"B1")
-            delattr(F1,"B2")
+            delattr(password_generator_ui,"B1")
+            delattr(password_generator_ui,"B2")
         except: pass
     tk.Label(f2,text="\n"*5,bg=bc,fg=fc,font=f"{style} 20 italic bold").grid(row=0,column=0)
     tk.Label(f2,text="   Url : ",bg=bc,fg=fc,font=f"{style} 30 italic bold").grid(row=1,column=0)
@@ -111,23 +111,23 @@ def F7():
     tk.Entry(f2,textvariable=Sv2,bg=bc,fg=fc,font=f"{style} 20 italic bold").grid(row=1,column=1)
     tk.Entry(f2,textvariable=Sv3,bg=bc,fg=fc,font=f"{style} 20 italic bold",show="*").grid(row=2,column=1)
     tk.Label(f2,text="\n",bg=bc).grid(row=3,column=0)
-    tk.Button(f2,text="Save password",bg=bc,fg=fc,font=f"{style} 20 italic bold",activebackground=bc,command=F8).grid(row=4,column=1)
-    setattr(F1,"B3",True)
-def F8():
+    tk.Button(f2,text="Save password",bg=bc,fg=fc,font=f"{style} 20 italic bold",activebackground=bc,command=password_storage_module_ui).grid(row=4,column=1)
+    setattr(password_generator_ui,"B3",True)
+def password_storage_module():
     l3=tk.Label(f2,bg=bc,fg=fc,font=f"{style} 30 italic bold")
     l3.place(x=100,y=500)
     if len(Sv2.get())==0: l3.config(text="URL cannot be Empty!")
-    elif(str(F4(Sv3.get()))=="Strong Password"):
+    elif(str(password_validator_ui(Sv3.get()))=="Strong Password"):
         with open("password_manager.txt","a") as file:
             file.write(f"URL : {Sv2.get()}\n")
             file.write(f"PASSWORD : {Sv3.get()}\n\n")
         l3.config(text=" "*8+"Saved Sucessfully!")
     else:
         l3.config(text=" "*12+"Weak Password")
-        F6()
+        password_gen_val_rules()
     Sv2.set("")
     Sv3.set("")
-def F9():
+def creator_info_ui():
     global root3
     try:
         root1.destroy()
@@ -166,11 +166,11 @@ f2=tk.Frame(root,bg=bc,relief=tk.RIDGE)
 f2.pack(anchor=tk.NW,side=tk.LEFT,fill=tk.BOTH)
 tk.Label(f1,text="Password manager ",bg=bc,fg=fc,font=f"{style} 30 italic bold underline").grid(row=0,column=0)
 tk.Label(f1,text=f"\n{a3[randint(0,len(a3)-1)]}\n\n{a4[randint(0,len(a4)-1)]}\n\n",bg=bc,fg=fc,font=f"{style} 20 italic bold").grid(row=1,column=0)
-tk.Button(f1,text="Generate password",bg=bc,fg=fc,width=17,font=f"{style} 20 italic bold",relief=tk.RAISED,activebackground=bc,command=F1).grid(row=2,column=0)
+tk.Button(f1,text="Generate password",bg=bc,fg=fc,width=17,font=f"{style} 20 italic bold",relief=tk.RAISED,activebackground=bc,command=password_generator_ui).grid(row=2,column=0)
 tk.Label(f1,text="\n\n\n",bg=bc).grid(row=3,column=0)
-tk.Button(f1,text="Validate password",bg=bc,fg=fc,width=17,font=f"{style} 20 italic bold",relief=tk.RAISED,activebackground=bc,command=F3).grid(row=4,column=0)
+tk.Button(f1,text="Validate password",bg=bc,fg=fc,width=17,font=f"{style} 20 italic bold",relief=tk.RAISED,activebackground=bc,command=password_validator_ui).grid(row=4,column=0)
 tk.Label(f1,text="\n\n\n",bg=bc).grid(row=5,column=0)
-tk.Button(f1,text="Save password",bg=bc,fg=fc,width=17,font=f"{style} 20 italic bold",relief=tk.RAISED,activebackground=bc,command=F7).grid(row=6,column=0)
+tk.Button(f1,text="Save password",bg=bc,fg=fc,width=17,font=f"{style} 20 italic bold",relief=tk.RAISED,activebackground=bc,command=password_storage_module).grid(row=6,column=0)
 tk.Label(f1,text="\n\n\n",bg=bc).grid(row=7,column=0)
-tk.Button(f1,text="Contact us",bg=bc,fg=fc,width=17,font=f"{style} 20 italic bold",relief=tk.RAISED,activebackground=bc,command=F9).grid(row=8,column=0)
+tk.Button(f1,text="Contact us",bg=bc,fg=fc,width=17,font=f"{style} 20 italic bold",relief=tk.RAISED,activebackground=bc,command=creator_info_ui).grid(row=8,column=0)
 root.mainloop()
