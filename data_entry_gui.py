@@ -30,8 +30,9 @@ def F1():
         e3.set("")
 root=tk.Tk()
 fc="black"
-bc=""
+bc="#A0AECD"
 root.configure(bg=bc)
+root.title("Data Entry Form")
 Sv1=tk.StringVar()
 Sv2=tk.StringVar()
 Sv3=tk.StringVar(value="Not Registered")
