@@ -111,19 +111,20 @@ def password_storage_module_ui():
     tk.Entry(f2,textvariable=Sv2,bg=bc,fg=fc,font=f"{style} 20 italic bold").grid(row=1,column=1)
     tk.Entry(f2,textvariable=Sv3,bg=bc,fg=fc,font=f"{style} 20 italic bold",show="*").grid(row=2,column=1)
     tk.Label(f2,text="\n",bg=bc).grid(row=3,column=0)
-    tk.Button(f2,text="Save password",bg=bc,fg=fc,font=f"{style} 20 italic bold",activebackground=bc,command=password_storage_module_ui).grid(row=4,column=1)
+    tk.Button(f2,text="Save password",bg=bc,fg=fc,font=f"{style} 20 italic bold",activebackground=bc,command=password_storage_module).grid(row=4,column=1)
     setattr(password_generator_ui,"B3",True)
 def password_storage_module():
     l3=tk.Label(f2,bg=bc,fg=fc,font=f"{style} 30 italic bold")
-    l3.place(x=100,y=500)
+    l3.grid(row=6,column=3,padx=20,pady=100)
     if len(Sv2.get())==0: l3.config(text="URL cannot be Empty!")
-    elif(str(password_validator_ui(Sv3.get()))=="Strong Password"):
+    elif len(Sv3.get())==0: l3.config(text="Password cannot be Empty!")
+    elif(str(password_validator(Sv3.get()))=="Strong Password"):
         with open("password_manager.txt","a") as file:
             file.write(f"URL : {Sv2.get()}\n")
             file.write(f"PASSWORD : {Sv3.get()}\n\n")
         l3.config(text=" "*8+"Saved Sucessfully!")
     else:
-        l3.config(text=" "*12+"Weak Password")
+        l3.config(text="Weak Password")
         password_gen_val_rules()
     Sv2.set("")
     Sv3.set("")
@@ -143,23 +144,19 @@ def creator_info_ui():
     tk.Label(root3,text="Phone : 8792453489",bg=bc,fg=fc,font=f"{style} 20 italic bold").pack(anchor=tk.NW)
     tk.Label(root3,text="E-mail : karthiksv073@gmail.com",bg=bc,fg=fc,font=f"{style} 20 italic bold").pack(anchor=tk.NW)
     root3.mainloop()
-root=tk.Tk()
+root=tk.Tk()    #Main Page
 a1=(("#343434","#FFD700","Times",24),("#A0AECD","#000000","Times",24))
 x1=randint(0,1)
 bc=a1[x1][0]
 fc=a1[x1][1]
 style=a1[x1][2]
-Iv2=tk.IntVar()
-Iv2.set(a1[x1][3])
+Iv1,Iv2=tk.IntVar(),tk.IntVar(value=a1[x1][3])
 a3=["It's good to see you again.","Welcome to Password manager.","We're thrilled you're here!","We're delighted to have you!","Welcome to our community!"]
 a4=["Let's dive into our world","Let's get it started"]
 root.geometry("1500x900")
 root.title("karthiksv@NIE-IT.org")
 root.configure(bg=bc)
-Sv1=tk.StringVar()
-Sv2=tk.StringVar()
-Sv3=tk.StringVar()
-Iv1=tk.IntVar()
+Sv1,Sv2,Sv3=tk.StringVar(),tk.StringVar(),tk.StringVar()
 f1=tk.Frame(root,bg=bc,borderwidth=5,relief=tk.RIDGE)
 f1.pack(anchor=tk.NW,side=tk.LEFT,fill=tk.BOTH)
 f2=tk.Frame(root,bg=bc,relief=tk.RIDGE)
@@ -170,7 +167,7 @@ tk.Button(f1,text="Generate password",bg=bc,fg=fc,width=17,font=f"{style} 20 ita
 tk.Label(f1,text="\n\n\n",bg=bc).grid(row=3,column=0)
 tk.Button(f1,text="Validate password",bg=bc,fg=fc,width=17,font=f"{style} 20 italic bold",relief=tk.RAISED,activebackground=bc,command=password_validator_ui).grid(row=4,column=0)
 tk.Label(f1,text="\n\n\n",bg=bc).grid(row=5,column=0)
-tk.Button(f1,text="Save password",bg=bc,fg=fc,width=17,font=f"{style} 20 italic bold",relief=tk.RAISED,activebackground=bc,command=password_storage_module).grid(row=6,column=0)
+tk.Button(f1,text="Save password",bg=bc,fg=fc,width=17,font=f"{style} 20 italic bold",relief=tk.RAISED,activebackground=bc,command=password_storage_module_ui).grid(row=6,column=0)
 tk.Label(f1,text="\n\n\n",bg=bc).grid(row=7,column=0)
 tk.Button(f1,text="Contact us",bg=bc,fg=fc,width=17,font=f"{style} 20 italic bold",relief=tk.RAISED,activebackground=bc,command=creator_info_ui).grid(row=8,column=0)
 root.mainloop()
