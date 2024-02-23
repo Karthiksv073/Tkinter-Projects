@@ -17,9 +17,11 @@ def start():
         p2.grid(row=1,column=0,padx=20,pady=60)
         clean_board()
     elif min(len(tv1.get()),len(tv2.get()))==0:
-        messagebox.showwarning(title="Error!",message="Player 1 and Player 2 cannot be Empty.")
+        messagebox.showwarning(title="Warning!",message="Player 1 and Player 2 cannot be Empty.")
     else:
-        messagebox.showwarning(title="Error!",message="Too long!.")
+        messagebox.showwarning(title="Warning!",message="Too long!.")
+        tv1.set("")
+        tv2.set("")
 def clean_board():
     global B1,B2,B3,B4,B5,B6,B7,B8,B9,buttons,values,combinations,t1
     B1=tk.Button(f1,text=" ",bg=cc1,width=2,fg=cc2,font=f"{font_style} 80 italic bold",activebackground=cc1,activeforeground=cc2,relief=tk.SUNKEN,command=lambda: update_board(0))
