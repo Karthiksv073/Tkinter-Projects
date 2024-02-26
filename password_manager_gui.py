@@ -116,15 +116,15 @@ def password_storage_module_ui():
 def password_storage_module():
     l3=tk.Label(f2,bg=bc,fg=fc,font=f"{style} 30 italic bold")
     l3.grid(row=6,column=3,padx=20,pady=100)
-    if len(Sv2.get())==0: l3.config(text="URL cannot be Empty!")
+    if len(Sv2.get())==0: l3.config(text="\tURL cannot be Empty!\t")
     elif len(Sv3.get())==0: l3.config(text="Password cannot be Empty!")
     elif(str(password_validator(Sv3.get()))=="Strong Password"):
         with open("password_manager.txt","a") as file:
             file.write(f"URL : {Sv2.get()}\n")
             file.write(f"PASSWORD : {Sv3.get()}\n\n")
-        l3.config(text=" "*8+"Saved Sucessfully!")
+        l3.config(text="\tSaved Sucessfully!\t")
     else:
-        l3.config(text="Weak Password")
+        l3.config(text="\tWeak Password\t")
         password_gen_val_rules()
     Sv2.set("")
     Sv3.set("")
