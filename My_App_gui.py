@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
+from random import randint
 from datetime import date
 def homepage():
     global f2
@@ -7,6 +8,7 @@ def homepage():
     except: pass
     try: f6.destroy()
     except: pass
+    root.title("Home")
     f2=tk.Frame(f1,bg=bc)
     f2.grid(row=0,column=0,padx=10,pady=10)
     l21=tk.Label(f2,text="My App",bg=bc,fg=fc,font="algerian 20 italic bold")
@@ -55,14 +57,15 @@ def update_earnings():
     try: f3.destroy()
     except: pass
     messagebox.showinfo(title="",message="File updated")
-    if get_total_earnings()>=100:
+    if get_total_earnings()>=50:
+        root.title("Locker")
         f6=tk.Frame(f1,bg=bc)
         f6.grid(row=0,column=0,padx=10,pady=10)
         l61=tk.Label(f6,text="Earnings Exceeded 50 INR\nWant to Lock ?",bg=bc,fg=fc,font="algerian 15 italic bold")
         l61.grid(row=0,column=0,padx=10,pady=10)
         b61=tk.Button(f6,text="Initiate Lock",bg=bc,fg=fc,font="algerian 15 italic bold",activebackground=fc,command=initiate_lock)
         b61.grid(row=1,column=0,padx=20,pady=10)
-        b62=tk.Button(f6,text="Not now",bg=bc,fg=fc,font="algerian 15 italic bold",activebackground=fc,command=homepage)
+        b62=tk.Button(f6,text="End now",bg=bc,fg=fc,font="algerian 15 italic bold",activebackground=fc,command=Endgame)
         b62.grid(row=1,column=1,padx=20,pady=10)
     else: homepage()   
 def get_total_earnings():
@@ -72,13 +75,14 @@ def get_total_earnings():
         a.pop(0)
         for i in a:
             a=i.rpartition("\t")
-            total+=int(a[-1])
+            if a[0][:-1]==str(day):total+=int(a[-1])
         file1.close()
         return total
 def rename_income_file():
     global f5
     try: f4.destroy()
     except: pass
+    root.title("File Manager")
     f5=tk.Frame(f1,bg=bc)
     f5.grid(row=0,column=0,padx=10,pady=10)
     l51=tk.Label(f5,text="Want to rename the file ?",bg=bc,fg=fc,font="algerian 18 italic bold")
@@ -111,13 +115,13 @@ def initiate_lock():
         file.write(f"{day}:\t{s}\n")
         file.close()
     homepage()
+def Endgame():
+    for i in range(10): initiate_lock()
 root=tk.Tk()
-bc="black"
-fc="grey"
-Iv1=tk.IntVar()
-Iv2=tk.IntVar()
-Sv1=tk.StringVar(value="Earnings.txt")
-day=date.today()
+bc,fc=(("#A0AECD","#000000"),("#000000","grey"))[randint(0,1)]
+Iv1,Iv2=tk.IntVar(),tk.IntVar()
+Sv1=tk.StringVar(value="Daily_50.txt")
+day=str(date.today())
 root.config(bg=bc)
 root.title("My App")
 f1=tk.Frame(root,bg=bc)
