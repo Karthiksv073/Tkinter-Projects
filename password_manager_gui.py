@@ -15,7 +15,7 @@ def password_generator_ui():
         for j in range(3):
             ck=f"c{i}"
             ck=tk.StringVar()
-            tk.Entry(f2,textvariable=ck,bg=bc,fg=fc,width=Iv2.get(),font=f"{style} 22 italic bold",relief=tk.SUNKEN).grid(row=i,column=j,padx=15,pady=7)
+            tk.Entry(f2,textvariable=ck,bg=bc,fg=fc,width=24,font=f"{style} 22 italic bold",relief=tk.SUNKEN).grid(row=i,column=j,padx=15,pady=7)
             tk.Label(f2,text="\n\n\n",bg=bc).grid(row=i+1,column=j+1)
             ck.set("  "+password_generator())
     setattr(password_generator_ui,"B1",True)
